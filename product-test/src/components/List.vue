@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper-list">
     <ul class="list">
-      <ListItem v-for="todo in todos" v-bind:key="todo.text" v-bind:todo="todo" />
+      <ListItem v-for="todo in todos" :key="todo.text" :todo="todo" :callback="del" />
     </ul>
   </div>
 </template>
@@ -17,10 +17,17 @@ export default {
   data () {
     return {
       todos: [
-        { text: '1' },
+        { text: '11' },
         { text: '2' },
         { text: '13' },
       ]
+    }
+  },
+  methods: {
+    del (ev) {
+      const idElem = ev.target.parentNode.parentNode.dataset.id;
+      const idArr = this.todos.findIndex(el => el.text == idElem);
+      if (idArr >= 0) this.todos.splice(idArr, 1);
     }
   }
 }
