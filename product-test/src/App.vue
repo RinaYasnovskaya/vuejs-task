@@ -1,14 +1,14 @@
 <template>
-  <HelloWorld msg="Hi Vue"/>
+  <List />
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import List from './components/List.vue';
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    List
   }
 }
 </script>
