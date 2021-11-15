@@ -1,7 +1,10 @@
 <template>
   <div class="wrapper-list">
     <ul class="list">
-      <ListItem v-for="todo in todos" :key="todo.text" :todo="todo" @del="$emit('del', todo)" />
+      <ListItem :card="card" 
+                @del="$emit('del', card)"
+                :isSave="isSave"
+      />
     </ul>
   </div>
 </template>
@@ -10,7 +13,8 @@
 export default {
   name: 'List',
   props: {
-    todos: Array
+    card: Object,
+    isSave: Boolean,
   }
 }
 </script>

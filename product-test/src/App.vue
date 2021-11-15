@@ -1,8 +1,12 @@
 <template>
   <div>
-    <HeaderCard />
-    <List :todos="todos" @del="del" />
-    <FooterCard />
+    <Card v-for="card in cards" 
+          :key="card.text" 
+          :card="card" 
+          @del="del" 
+          :isSave="isSave"
+          @save="saveSession"
+    />
   </div>
 </template>
 
@@ -11,18 +15,21 @@ export default {
   name: 'App',
   data () {
     return {
-      todos: [
+      cards: [
         { text: '11' },
         { text: '2' },
         { text: '13' },
-      ]
+      ],
+      isSave: false,
     }
   },
   methods: {
-    del (todo) {
-      console.log(todo);
-      this.todos = this.todos.filter(el => el.text != todo.text)
-    }
+    del (card) {
+      this.cards = this.cards.filter(el => el.text != card.text)
+    },
+    saveSession() {
+      this.isSave = true;
+    },
   }
 }
 </script>

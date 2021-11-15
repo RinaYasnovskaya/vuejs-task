@@ -1,14 +1,14 @@
 <template>
   <li class="list__item">
     <div class="list__item-left">
-      <span class="list__item-title">{{ todo.text }}</span>
+      <span class="list__item-title">{{ card.text }}</span>
     </div>
     <div class="list__item-right">
-      <button class="list__delete" @click="$emit('del', todo)" ref="button">del</button>
-      <button class="list__decrim" @click="decrement">-</button>
+      <button class="list__delete" @click="$emit('del', card)" ref="button" v-if="!isSave">del</button>
+      <button class="list__decrim" @click="decrement" v-if="!isSave">-</button>
       <span class="list__count">{{ count }}</span>
-      <button class="list__increm" @click="increment">+</button>
-      <button class="list__swap">swap?</button>
+      <button class="list__increm" @click="increment" v-if="!isSave">+</button>
+      <button class="list__swap" v-if="!isSave">swap?</button>
     </div>
   </li>
 </template>
@@ -17,8 +17,9 @@
 export default {
   name: 'ListItem',
   props: {
-    todo: Object,
+    card: Object,
     callback: Function,
+    isSave: Boolean,
   },
   data () {
     return {
