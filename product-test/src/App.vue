@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="app-inner">
     <Card v-for="card in cards" 
           :key="card.text" 
           :card="card" 
@@ -29,9 +29,21 @@ export default {
 </script>
 
 <style>
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   text-align: center;
   color: #2c3e50;
+}
+.app-inner{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  padding-top: 15px;
 }
 </style>

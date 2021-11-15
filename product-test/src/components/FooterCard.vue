@@ -1,9 +1,9 @@
 <template>
   <div class="footer">
-    <my-button @click="addProduct">
+    <my-button class="footer__add" @click="addProduct">
       Добавить продукт
     </my-button>
-    <my-button @click="saveSession">
+    <my-button class="footer__save" @click="saveSession">
       Сохранить
     </my-button>
   </div>
@@ -27,5 +27,18 @@ export default {
 </script>
 
 <style scoped>
-
+  .footer{
+    display: flex;
+    justify-content: space-between;
+    padding: 7px 15px;
+    border-top: 1px solid grey;
+  }
+  .footer__add{
+    background-color: #daf4ff;
+    color: rgba(51, 73, 153, 0.932);
+  }
+  .footer__save{
+    background-color: rgb(0 139 237);
+    color: white;
+  }
 </style>

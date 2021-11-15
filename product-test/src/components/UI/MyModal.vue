@@ -1,10 +1,12 @@
 <template>
   <div class="modal" @click="hideModal" v-if="show">
-    <span class="modal__title">Выберете из списка: </span>
-    <select name="" id="sel" class="modal__select">
-      <option v-for="select in selects" :key="select">{{ select }}</option>
-    </select>
-    <my-button>Сохранить</my-button>
+    <div @click.stop class="modal__content">
+      <span class="modal__title">Выберите из списка: </span>
+      <select name="" id="sel" class="modal__select">
+        <option v-for="select in selects" :key="select" :value="select">{{ select }}</option>
+      </select>
+      <my-button>Сохранить</my-button>
+    </div>
   </div>
 </template>
 
@@ -35,5 +37,25 @@ export default {
 </script>
 
 <style>
-
+  .modal{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(80,12,23,0.25);
+    border-radius: 13px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .modal__content{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+  }
+  .modal__title{
+    font-weight: bold;
+  }
 </style>

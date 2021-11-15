@@ -18,3 +18,10 @@ export default {
   }
 }
 </script>
+
+<style>
+  .wrapper-list{
+    padding: 10px 15px;
+    border-top: 1px solid grey;
+  }
+</style>

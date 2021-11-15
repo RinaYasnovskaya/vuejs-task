@@ -11,5 +11,12 @@ export default {
 </script>
 
 <style>
-  
+  .my-btn{
+    padding: 8px 20px;
+    outline: none;
+    border: none;
+    background: unset;
+    border-radius: 8px;
+    font-weight: bold;
+  }
 </style>
