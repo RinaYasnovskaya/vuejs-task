@@ -2,7 +2,7 @@
   <div>
     <HeaderCard />
     <List :card="card" @del="$emit('del', card)" :isSave="isSave" />
-    <FooterCard @save="$emit('save')" :isSave="isSave" />
+    <FooterCard @save="saveSession" :isSave="isSave" />
   </div>
 </template>
 
@@ -11,7 +11,16 @@ export default {
   name: 'Card',
   props: {
     card: Object,
-    isSave: Boolean,
+  },
+  data () {
+    return {
+      isSave: false,
+    }
+  },
+  methods: {
+    saveSession() {
+      this.isSave = true;
+    },
   }
 }
 </script>
