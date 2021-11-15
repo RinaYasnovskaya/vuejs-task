@@ -1,9 +1,9 @@
 <template>
-  <div class="footer" v-if="!isSave">
-    <my-button>
+  <div class="footer">
+    <my-button @click="addProduct">
       Добавить продукт
     </my-button>
-    <my-button @click="$emit('save')">
+    <my-button @click="saveSession">
       Сохранить
     </my-button>
   </div>
@@ -13,7 +13,15 @@
 export default {
   name: 'FooterCard',
   props: {
-    isSave: Boolean,
+    show: Boolean,
+  },
+  methods: {
+    addProduct () {
+      this.$emit('update:show', true);
+    },
+    saveSession () {
+      this.$emit('update:save', true);
+    }
   }
 }
 </script>

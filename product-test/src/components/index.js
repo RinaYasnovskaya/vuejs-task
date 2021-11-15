@@ -4,7 +4,8 @@ import MyButton from '@/components/UI/MyButton.vue';
 import FooterCard from '@/components/FooterCard.vue';
 import HeaderCard from '@/components/HeaderCard.vue';
 import Card from '@/components/Card.vue';
+import MyModal from '@/components/UI/MyModal.vue';
 
 export default [
-  List, ListItem, MyButton, FooterCard, HeaderCard, Card
+  List, ListItem, MyButton, FooterCard, HeaderCard, Card, MyModal
 ];

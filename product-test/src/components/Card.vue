@@ -2,7 +2,8 @@
   <div>
     <HeaderCard />
     <List :card="card" @del="$emit('del', card)" :isSave="isSave" />
-    <FooterCard @save="saveSession" :isSave="isSave" />
+    <FooterCard v-model:save="isSave" v-model:show="show" v-if="!isSave" />
+    <MyModal v-model:show="show" v-if="!isSave" />
   </div>
 </template>
 
@@ -15,12 +16,8 @@ export default {
   data () {
     return {
       isSave: false,
+      show: false,
     }
   },
-  methods: {
-    saveSession() {
-      this.isSave = true;
-    },
-  }
 }
 </script>
