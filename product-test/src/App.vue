@@ -1,7 +1,7 @@
 <template>
   <div>
     <HeaderCard />
-    <List />
+    <List :todos="todos" @del="del" />
     <FooterCard />
   </div>
 </template>
@@ -9,6 +9,21 @@
 <script>
 export default {
   name: 'App',
+  data () {
+    return {
+      todos: [
+        { text: '11' },
+        { text: '2' },
+        { text: '13' },
+      ]
+    }
+  },
+  methods: {
+    del (todo) {
+      console.log(todo);
+      this.todos = this.todos.filter(el => el.text != todo.text)
+    }
+  }
 }
 </script>
 

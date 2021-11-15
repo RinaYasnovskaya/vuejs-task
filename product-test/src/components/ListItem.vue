@@ -1,10 +1,10 @@
 <template>
-  <li class="list__item" data-id="11">
+  <li class="list__item">
     <div class="list__item-left">
       <span class="list__item-title">{{ todo.text }}</span>
     </div>
     <div class="list__item-right">
-      <button class="list__delete" @click="callback" ref="button">del</button>
+      <button class="list__delete" @click="$emit('del', todo)" ref="button">del</button>
       <button class="list__decrim" @click="decrement">-</button>
       <span class="list__count">{{ count }}</span>
       <button class="list__increm" @click="increment">+</button>
