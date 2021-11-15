@@ -1,5 +1,9 @@
 <template>
-  <List />
+  <div>
+    <HeaderCard />
+    <List />
+    <FooterCard />
+  </div>
 </template>
 
 <script>
