@@ -1,7 +1,7 @@
 <template>
   <div class="card">
     <HeaderCard />
-    <List :card="card" @del="$emit('del', card)" :isSave="isSave" />
+    <List :session="session" @del="$emit('del', session)" :isSave="isSave" />
     <FooterCard v-model:save="isSave" v-model:show="show" v-if="!isSave" />
     <MyModal v-model:show="show" v-if="!isSave" />
   </div>
@@ -11,7 +11,7 @@
 export default {
   name: 'Card',
   props: {
-    card: Object,
+    session: Object,
   },
   data () {
     return {

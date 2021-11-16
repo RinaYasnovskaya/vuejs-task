@@ -1,29 +1,28 @@
 <template>
   <div class="app-inner">
-    <Card v-for="card in cards" 
-          :key="card.text" 
-          :card="card" 
+    <Card v-for="session in SESSIONS" 
+          :key="session.text" 
+          :session="session" 
           @del="del" 
     />
   </div>
 </template>
 
 <script>
+import {mapGetters} from 'vuex';
+
 export default {
   name: 'App',
-  data () {
-    return {
-      cards: [
-        { text: '11' },
-        { text: '2' },
-        { text: '13' },
-      ],
-    }
-  },
   methods: {
     del (card) {
-      this.cards = this.cards.filter(el => el.text != card.text)
+      this.cards = this.cards.filter(el => el.text != card.text);
     },
+  },
+  mounted() {
+    this.$store.dispatch('getSessions');
+  },
+  computed: {
+    ...mapGetters(['SESSIONS']),
   }
 }
 </script>

@@ -1,10 +1,10 @@
 <template>
   <li class="list__item">
     <div class="list__item-left">
-      <span class="list__item-title">{{ card.text }}</span>
+      <span class="list__item-title">{{ session.text }}</span>
     </div>
     <div class="list__item-right">
-      <button class="list__delete" @click="$emit('del', card)" ref="button" v-if="!isSave">del</button>
+      <button class="list__delete" @click="$emit('del', session)" ref="button" v-if="!isSave">del</button>
       <my-button class="list__decrim calc" @click="decrement" v-if="!isSave">-</my-button>
       <span class="list__count">{{ count }}</span>
       <my-button class="list__increm calc" @click="increment" v-if="!isSave">+</my-button>
@@ -19,7 +19,7 @@ export default {
   components: { MyButton },
   name: 'ListItem',
   props: {
-    card: Object,
+    session: Object,
     callback: Function,
     isSave: Boolean,
   },
