@@ -31,7 +31,7 @@ export default {
     display: flex;
     justify-content: space-between;
     padding: 7px 15px;
-    border-top: 1px solid grey;
+    border-top: 1px solid #dfdfdf;
   }
   .footer__add{
     background-color: #daf4ff;

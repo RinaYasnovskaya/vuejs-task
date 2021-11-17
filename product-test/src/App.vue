@@ -46,16 +46,18 @@ export default {
   padding: 0;
   box-sizing: border-box;
 }
+html{
+  font-size: 14px;
+}
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  text-align: center;
-  color: #2c3e50;
+  font-family: Arial, sans-serif;
+  background-color: rgb(238, 237, 237);
 }
 .app-inner{
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 15px;
-  padding-top: 15px;
+  padding: 20px 0;
 }
 </style>

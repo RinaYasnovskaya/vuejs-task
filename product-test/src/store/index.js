@@ -18,6 +18,5 @@ export default createStore({
       const sortedData = getSortedData();
       context.commit('set_sessions', sortedData);
     },
-
   },
 });

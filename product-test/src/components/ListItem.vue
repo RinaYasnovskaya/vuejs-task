@@ -1,14 +1,19 @@
 <template>
-  <li class="list__item">
+  <li :class="['list__item', classLine]" @click="$emit('activeLine', product.name)">
     <div class="list__item-left">
-      <span class="list__item-title">{{ product.productName }}</span>
+      <span class="list__item-title">{{ product.name }}</span>
     </div>
     <div class="list__item-right">
-      <button class="list__delete" @click="$emit('del', product)" ref="button" v-if="!isSave">del</button>
-      <my-button class="list__decrim calc" @click="decrement" v-if="!isSave">-</my-button>
+      <my-button :class="['list__delete', classButton]" @click="$emit('del', product)"
+                  ref="button" v-if="!isSave" />
+      <my-button :class="['list__decrim calc', classButton]" @click="decrement" v-if="!isSave">
+        <span>&#8211;</span>
+      </my-button>
       <span class="list__count">{{ count }}</span>
-      <my-button class="list__increm calc" @click="increment" v-if="!isSave">+</my-button>
-      <button class="list__swap" v-if="!isSave">swap?</button>
+      <my-button :class="['list__increm calc', classButton]" @click="increment" v-if="!isSave">
+        +
+      </my-button>
+      <my-button :class="['list__swap', classButton]" v-if="!isSave">sw</my-button>
     </div>
   </li>
 </template>
@@ -20,6 +25,7 @@ export default {
     product: Object,
     callback: Function,
     isSave: Boolean,
+    line: String,
   },
   data () {
     return {
@@ -33,10 +39,22 @@ export default {
     decrement () {
       if (this.count != 1) this.count--;
       else this.$refs.button.click();
-    }
+    },
   },
   mounted() {
-    this.count = this.product.productCount;
+    this.count = this.product.count;
+  },
+  computed: {
+    classLine: function () {
+      return {
+        list__item_active: (this.product.name === this.line) && !this.isSave,
+      }
+    },
+    classButton: function () {
+      return {
+        button_active: (this.product.name === this.line) && !this.isSave,
+      }
+    },
   }
 }
 </script>
@@ -45,13 +63,41 @@ export default {
   .list__item{
     display: flex;
     justify-content: space-between;
+    padding: 5px 15px;
+  }
+  .list__item_active{
+    background-color: #f4faff;
   }
   .list__item-right{
     display: flex;
-    gap: 5px;
     align-items: center;
+    justify-content: flex-end;
+  }
+  .list__count{
+    width: 30px;
+    text-align: center;
+  }
+  button{
+    padding: 0;
+    border-radius: 0;
+    opacity: 0.3;
+  }
+  .button_active{
+    opacity: 1;
   }
   .calc{
-    padding: 0;
+    font-size: 14px;
+    color: blue;
+  }
+  .list__delete, .list__increm{
+    margin-right: 10px;
+  }
+  .list__delete{
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    width: 15px;
+    height: 15px;
+    background-image: url('../assets/trash.png');
   }
 </style>

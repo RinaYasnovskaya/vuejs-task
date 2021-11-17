@@ -6,6 +6,8 @@
                 v-for="product in products"
                 :key="product.id"
                 :product="product" 
+                @activeLine="activeLine"
+                :line="line"
       />
     </ul>
   </div>
@@ -17,6 +19,7 @@ export default {
   data() {
     return {
       products: [],
+      line: '0',
     }
   },
   props: {
@@ -25,13 +28,18 @@ export default {
   },
   mounted() {
     this.products = this.session.products;
+  },
+  methods: {
+    activeLine(name) {
+      this.line = name;
+    }
   }
 }
 </script>
 
 <style>
   .wrapper-list{
-    padding: 10px 15px;
-    border-top: 1px solid grey;
+    padding: 10px 0;
+    border-top: 1px solid #dfdfdf;
   }
 </style>

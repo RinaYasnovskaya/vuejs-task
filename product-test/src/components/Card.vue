@@ -1,6 +1,6 @@
 <template>
   <div :class="['card', classObject]" @click="$emit('doActive', session.sessionId)">
-    <HeaderCard />
+    <HeaderCard :isSave="isSave" />
     <List :session="session" @del="$emit('del', session)" :isSave="isSave" />
     <FooterCard v-model:save="isSave" v-model:show="show" v-if="!isSave" />
     <MyModal v-model:show="show" v-if="!isSave" />
@@ -33,15 +33,17 @@ export default {
 
 <style>
   .card{
-    width: 400px;
+    width: 500px;
     border-radius: 10px;
-    border: 2px solid whitesmoke;
+    border: 2px solid #dde8fb;
     position: relative;
+    background: white;
   }
   .card__active{
     border-color: violet;
   }
   .card__save{
+    border: none;
     border-left: 4px solid blue;
   }
 </style>

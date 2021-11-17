@@ -5,6 +5,8 @@
       <select name="" id="sel" class="modal__select">
         <option v-for="select in selects" :key="select" :value="select">{{ select }}</option>
       </select>
+      <label for="count">Введите количество:</label>
+      <input type="text" name="count" id="count">
       <my-button class="modal__save">Сохранить</my-button>
     </div>
   </div>
@@ -43,7 +45,7 @@ export default {
     width: 100%;
     top: 0;
     left: 0;
-    background-color: rgba(80,12,23,0.25);
+    background-color: rgb(107 44 114 / 19%);
     border-radius: 8px;
     display: flex;
     justify-content: center;
