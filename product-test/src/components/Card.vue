@@ -1,5 +1,5 @@
 <template>
-  <div class="card">
+  <div :class="['card', classObject]" @click="$emit('doActive', session.sessionId)">
     <HeaderCard />
     <List :session="session" @del="$emit('del', session)" :isSave="isSave" />
     <FooterCard v-model:save="isSave" v-model:show="show" v-if="!isSave" />
@@ -12,6 +12,7 @@ export default {
   name: 'Card',
   props: {
     session: Object,
+    activeItemId: String,
   },
   data () {
     return {
@@ -19,14 +20,28 @@ export default {
       show: false,
     }
   },
+  computed: {
+    classObject: function () {
+      return {
+        card__active: (this.activeItemId === this.session.sessionId) && !this.isSave,
+        card__save: this.isSave,
+      }
+    }
+  }
 }
 </script>
 
 <style>
   .card{
     width: 400px;
-    border: 2px solid violet;
     border-radius: 10px;
+    border: 2px solid whitesmoke;
     position: relative;
+  }
+  .card__active{
+    border-color: violet;
+  }
+  .card__save{
+    border-left: 4px solid blue;
   }
 </style>

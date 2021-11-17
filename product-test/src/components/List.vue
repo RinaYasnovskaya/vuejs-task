@@ -1,9 +1,11 @@
 <template>
   <div class="wrapper-list">
     <ul class="list">
-      <ListItem :session="session" 
-                @del="$emit('del', session)"
+      <ListItem @del="$emit('del', session)"
                 :isSave="isSave"
+                v-for="product in products"
+                :key="product.id"
+                :product="product" 
       />
     </ul>
   </div>
@@ -12,9 +14,17 @@
 <script>
 export default {
   name: 'List',
+  data() {
+    return {
+      products: [],
+    }
+  },
   props: {
     session: Object,
     isSave: Boolean,
+  },
+  mounted() {
+    this.products = this.session.products;
   }
 }
 </script>

@@ -1,10 +1,10 @@
 <template>
   <li class="list__item">
     <div class="list__item-left">
-      <span class="list__item-title">{{ session.text }}</span>
+      <span class="list__item-title">{{ product.productName }}</span>
     </div>
     <div class="list__item-right">
-      <button class="list__delete" @click="$emit('del', session)" ref="button" v-if="!isSave">del</button>
+      <button class="list__delete" @click="$emit('del', product)" ref="button" v-if="!isSave">del</button>
       <my-button class="list__decrim calc" @click="decrement" v-if="!isSave">-</my-button>
       <span class="list__count">{{ count }}</span>
       <my-button class="list__increm calc" @click="increment" v-if="!isSave">+</my-button>
@@ -14,12 +14,10 @@
 </template>
 
 <script>
-import MyButton from './UI/MyButton.vue';
 export default {
-  components: { MyButton },
   name: 'ListItem',
   props: {
-    session: Object,
+    product: Object,
     callback: Function,
     isSave: Boolean,
   },
@@ -36,6 +34,9 @@ export default {
       if (this.count != 1) this.count--;
       else this.$refs.button.click();
     }
+  },
+  mounted() {
+    this.count = this.product.productCount;
   }
 }
 </script>
