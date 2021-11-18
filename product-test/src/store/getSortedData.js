@@ -12,6 +12,7 @@ export const getSortedData = () => {
         open: event,
         save: false,
       };
+
       sortedData.push(result);
       allSessionsId.push(event.sessionId);
     } else {
@@ -25,6 +26,7 @@ export const getSortedData = () => {
           exit: event,
           save: false,
         };
+
         sortedData.push(result);
         allSessionsId.push(event.sessionId);
       }
@@ -41,7 +43,7 @@ export const getSortedData = () => {
       if (existProduct) {
         existProduct.count = existProduct.count - product.productCount;
       } else {
-        products.push({ name: product.productName, count: (0-product.productCount) });
+        products.push({name: product.productName, count: (0-product.productCount)});
       }
     });
 

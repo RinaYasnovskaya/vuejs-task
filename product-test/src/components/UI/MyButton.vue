@@ -1,4 +1,4 @@
-<template lang="">
+<template>
   <button class="my-btn">
     <slot></slot>
   </button>
@@ -19,14 +19,5 @@ export default {
     border-radius: 8px;
     font-weight: bold;
     cursor: pointer;
-  }
-  .swap{
-    background: url('../../assets/swap.png') no-repeat center;
-    background-size: contain;
-    width: 20px;
-    height: 20px;
-    padding: 0;
-    border-radius: 0;
-    margin-left: 18px;
   }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div class="footer">
-    <my-button class="footer__add" @click="addProduct">
+    <my-button class="footer__add" @click="this.$emit('update:show', true)">
       Добавить продукт
     </my-button>
     <my-button class="footer__save" @click="$emit('save')">
@@ -12,14 +12,6 @@
 <script>
 export default {
   name: 'FooterCard',
-  props: {
-    show: Boolean,
-  },
-  methods: {
-    addProduct() {
-      this.$emit('update:show', true);
-    },
-  }
 }
 </script>
 

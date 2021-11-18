@@ -27,9 +27,10 @@ export default {
     func: Function,
     isSave: Boolean,
     allSession: Array,
+    classButton: Object,
   },
   computed: {
-    classHiddenMenu: function() {
+    classHiddenMenu() {
       return {
         menu_hidden: !this.isShowMenu,
         menu_active: this.isShowMenu,
@@ -44,7 +45,16 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
+  .swap{
+    background: url('../../assets/swap.png') no-repeat center;
+    background-size: contain;
+    width: 20px;
+    height: 20px;
+    padding: 0;
+    border-radius: 0;
+    margin-left: 18px;
+  }
   .menu_hidden{
     display: none;
   }

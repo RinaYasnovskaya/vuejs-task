@@ -37,14 +37,14 @@ export default {
     activeLine(name) {
       this.line = name;
     },
-    deleteProduct(product){
-      this.$store.commit('deleteProduct', {product, id: this.session.sessionId});
+    deleteProduct(product) {
+      this.$emit('deleteProduct', product);
     },
-    saveCount(name, count){
-      this.$store.commit('changeProductCount', {id: this.session.sessionId, product: {name, count}});
+    saveCount(name, count) {
+      this.$emit('saveCount', name, count);
     },
-    swapProductSession(nextId, product){
-      this.$store.commit('swapProduct', {currentId: this.session.sessionId, nextId, product});
+    swapProductSession(nextId, product) {
+      this.$emit('swapProductSession', nextId, product);
     }
   }
 }

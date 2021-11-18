@@ -7,11 +7,13 @@ export default createStore({
     activeCard: '0',
     allIdSessions: [],
   }),
+
   getters: {
     SESSIONS: state => state.sessions,
     ACTIVE_CARD: state => state.activeCard,
     SESSIONS_ID: state => state.allIdSessions,
   },
+
   mutations: {
     setSessions: (state, payload) => state.sessions = payload,
     setActiveCard: (state, payload) => state.activeCard = payload,
@@ -22,36 +24,41 @@ export default createStore({
     },
 
     deleteProduct: (state, payload) => {
-      const session = state.sessions.find(el => el.sessionId === payload.id);
+      const session = state.sessions.find(session => session.sessionId === payload.id);
       const productInd = session.products.findIndex(product => product.name == payload.product.name);
       session.products.splice(productInd, 1);
     },
+
     changeProductCount: (state, payload) => {
-      const session = state.sessions.find(el => el.sessionId === payload.id);
-      const indProduct = session.products.findIndex(el => el.name === payload.product.name);
+      const session = state.sessions.find(session => session.sessionId === payload.id);
+      const indProduct = session.products.findIndex(product => product.name === payload.product.name);
 
       session.products.splice(indProduct, 1, payload.product);
     },
+
     addProduct: (state, payload) => {
-      const session = state.sessions.find(el => el.sessionId === payload.id);
+      const session = state.sessions.find(session => session.sessionId === payload.id);
       session.products.push(payload.product);
     },
+
     swapProduct: (state, payload) => {
-      const currentSession = state.sessions.find(el => el.sessionId === payload.currentId);
-      const nextSession = state.sessions.find(el => el.sessionId === payload.nextId);
-      const indInCurrentSession = currentSession.products.findIndex(el => el.name === payload.product.name);
+      const currentSession = state.sessions.find(session => session.sessionId === payload.currentId);
+      const nextSession = state.sessions.find(session => session.sessionId === payload.nextId);
+      const indInCurrentSession = currentSession.products.findIndex(product => product.name === payload.product.name);
 
       currentSession.products.splice(indInCurrentSession, 1);
       nextSession.products.push(payload.product);
     },
+
     swapAll: (state, payload) => {
-      const currentSession = state.sessions.find(el => el.sessionId === payload.currentId);
-      const nextSession = state.sessions.find(el => el.sessionId === payload.nextId);
+      const currentSession = state.sessions.find(session => session.sessionId === payload.currentId);
+      const nextSession = state.sessions.find(session => session.sessionId === payload.nextId);
 
       nextSession.products.push(...currentSession.products);
       currentSession.products.length = 0;
     }
   },
+
   actions: {
     getSessions: (context) => {
       const data = getSortedData();

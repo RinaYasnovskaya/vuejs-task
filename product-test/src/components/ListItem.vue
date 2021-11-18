@@ -4,8 +4,11 @@
       <span class="list__item-title">{{ product.name }}</span>
     </div>
     <div class="list__item-right">
-      <my-button :class="['list__delete', classButton]" @click="$emit('del', product)"
-                  v-if="!isSave" />
+      <my-button 
+        :class="['list__delete', classButton]"
+        @click="$emit('del', product)"
+        v-if="!isSave"
+      />
       <my-button :class="['list__decrim calc', classButton]" @click="decrement" v-if="!isSave">
         <span>&#8211;</span>
       </my-button>
@@ -13,7 +16,12 @@
       <my-button :class="['list__increm calc', classButton]" @click="increment" v-if="!isSave">
         +
       </my-button>
-      <MyButtonSwap :isSave="isSave" :allSession="allSession" :func="swapProductCurr" />
+      <MyButtonSwap
+        :isSave="isSave"
+        :allSession="allSession"
+        :func="swapProductCurr"
+        :classButton="classButton" 
+      />
     </div>
   </li>
 </template>
@@ -43,7 +51,9 @@ export default {
       if (this.count != 1) {
         this.count--;
         this.saveCount(this.count);
-      } else this.$emit('del', this.product);
+      } else {
+        this.$emit('del', this.product);
+      }
     },
     check() {
       return ((this.product.name === this.line) && !this.isSave);
@@ -56,18 +66,19 @@ export default {
     },
     swapProductCurr(id) {
       this.$emit('swapProductSession', id, this.product);
+      this.showMenu();
     }
   },
   mounted() {
     this.count = this.product.count;
   },
   computed: {
-    classButton: function () {
+    classButton() {
       return {
         button_active: this.check(),
       }
     },
-    classHiddenMenu: function() {
+    classHiddenMenu() {
       return {
         menu_hidden: !this.isShowMenu,
         menu_active: this.isShowMenu,
@@ -83,7 +94,7 @@ export default {
     justify-content: space-between;
     padding: 5px 15px;
   }
-  .list__item_active{
+  .list__item:hover{
     background-color: #f4faff;
   }
   .list__item-right{

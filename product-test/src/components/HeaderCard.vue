@@ -43,7 +43,7 @@ export default {
     allSessionsWithName: Array,
   },
   computed: {
-    classIcon: function () { 
+    classIcon() { 
       return {
         icon_save: this.isSave
       }
