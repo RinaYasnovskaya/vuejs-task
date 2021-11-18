@@ -1,9 +1,9 @@
 <template>
   <div :class="['card', classObject]" @click="$emit('doActive', session.sessionId)">
-    <HeaderCard :isSave="isSave" />
-    <List :session="session" @del="$emit('del', session)" :isSave="isSave" />
-    <FooterCard v-model:save="isSave" v-model:show="show" v-if="!isSave" />
-    <MyModal v-model:show="show" v-if="!isSave" />
+    <HeaderCard :isSave="session.save" />
+    <List :session="session" @del="$emit('del', session)" :isSave="session.save" />
+    <FooterCard @save="saveSession" v-model:show="show" v-if="!session.save" />
+    <MyModal v-model:show="show" v-if="!session.save" @addNewProduct="addNewProduct" />
   </div>
 </template>
 
@@ -23,9 +23,17 @@ export default {
   computed: {
     classObject: function () {
       return {
-        card__active: (this.activeItemId === this.session.sessionId) && !this.isSave,
-        card__save: this.isSave,
+        card__active: (this.activeItemId === this.session.sessionId) && !this.session.save,
+        card__save: this.session.save,
       }
+    }
+  },
+  methods: {
+    saveSession() {
+      this.$store.commit('setSaveSession', this.session.sessionId);
+    },
+    addNewProduct(product) {
+      this.$store.commit('addProduct', { product, id: this.session.sessionId });
     }
   }
 }

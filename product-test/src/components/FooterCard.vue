@@ -3,7 +3,7 @@
     <my-button class="footer__add" @click="addProduct">
       Добавить продукт
     </my-button>
-    <my-button class="footer__save" @click="saveSession">
+    <my-button class="footer__save" @click="$emit('save')">
       Сохранить
     </my-button>
   </div>
@@ -16,12 +16,9 @@ export default {
     show: Boolean,
   },
   methods: {
-    addProduct () {
+    addProduct() {
       this.$emit('update:show', true);
     },
-    saveSession () {
-      this.$emit('update:save', true);
-    }
   }
 }
 </script>

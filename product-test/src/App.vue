@@ -3,9 +3,8 @@
     <Card v-for="session in SESSIONS" 
           :key="session.sessionId"  
           :session="session"
-          @del="del"
           @doActive="activeCard"
-          :activeItemId="activeItemId"
+          :activeItemId="ACTIVE_CARD"
     />
   </div>
 </template>
@@ -15,26 +14,19 @@ import {mapGetters} from 'vuex';
 
 export default {
   name: 'App',
-  data() {
-    return {
-      activeItemId: '0',
-    }
-  },
   methods: {
-    del(card) {
-      //dispatch
-      console.log(card);
-    },
-
     activeCard(sessionId) {
-      this.activeItemId = sessionId;
+      this.$store.commit('setActiveCard', sessionId);
     }
   },
   mounted() {
     this.$store.dispatch('getSessions');
   },
   computed: {
-    ...mapGetters(['SESSIONS']),
+    ...mapGetters([
+      'SESSIONS',
+      'ACTIVE_CARD',
+    ]),
   }
 }
 </script>
@@ -47,14 +39,10 @@ export default {
 }
 html{
   font-size: 14px;
-}
-html, body, #app{
-  width: 100%;
-  height: 100%;
+  background-color: rgb(238, 237, 237);
 }
 #app {
   font-family: Arial, sans-serif;
-  background-color: rgb(238, 237, 237);
 }
 .app-inner{
   display: flex;

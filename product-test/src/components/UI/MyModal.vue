@@ -2,12 +2,20 @@
   <div class="modal" @click="hideModal" v-if="show">
     <div @click.stop class="modal__content">
       <span class="modal__title">Выберите из списка: </span>
-      <select name="" id="sel" class="modal__select">
+      <select name="" id="sel" class="modal__select" @change="inputSelected" v-model="selectedPos">
         <option v-for="select in selects" :key="select" :value="select">{{ select }}</option>
       </select>
       <label for="count" class="modal__title">Введите количество:</label>
-      <input type="text" class="modal__input" name="count" id="count">
-      <my-button class="modal__save">Сохранить</my-button>
+      <input 
+        type="number"
+        class="modal__input"
+        name="count"
+        id="count"
+        :value="count"
+        @input="inputCount"
+        min="1"
+      >
+      <my-button class="modal__save" @click="saveNewProduct">Сохранить</my-button>
     </div>
   </div>
 </template>
@@ -27,13 +35,29 @@ export default {
         'Sheba для взрослых кошек с телятиной и языкой, 85г',
         'Сахар белый, 1кг',
         'Sorti средство для мытья посуды, 450г',
-      ]
+      ],
+      selectedPos: '',
+      count: 1,
     }
   },
   methods: {
-    hideModal () {
+    hideModal() {
       this.$emit('update:show', false);
+    },
+    inputCount(event) {
+      this.count = +event.target.value;
+    },
+    inputSelected(event) {
+      this.selectedPos = event.target.value;
+    },
+    saveNewProduct() {
+      const product = { name: this.selectedPos, count: this.count };
+      this.$emit('addNewProduct', product);
+      this.hideModal();
     }
+  },
+  mounted() {
+    this.selectedPos = this.selects[0];
   }
 }
 </script>

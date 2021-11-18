@@ -2,22 +2,40 @@ import {createStore} from 'vuex';
 import {getSortedData} from './getSortedData';
 
 export default createStore({
-  state: {
+  state: () => ({
     sessions: [],
-  },
+    activeCard: '0'
+  }),
   getters: {
-    SESSIONS: state => {
-      return state.sessions
-    }
+    SESSIONS: state => state.sessions,
+    ACTIVE_CARD: state => state.activeCard,
   },
   mutations: {
-    set_sessions: (state, payload) => state.sessions = payload,
+    setSessions: (state, payload) => state.sessions = payload,
+    setActiveCard: (state, payload) => state.activeCard = payload,
+
+    setSaveSession: (state, payload) => {
+      const session = state.sessions.findIndex(item => item.sessionId === payload);
+      state.sessions[session].save = true;
+    },
+
+    deleteProduct: (state, payload) => {
+      const session = state.sessions.find(el => el.sessionId = payload.id);
+      const productInd = session.products.findIndex(product => product.name == payload.product.name);
+      session.products.splice(productInd, 1);
+    },
+    changeProductCount: (state, payload) => {
+      console.log(payload);
+    },
+    addProduct: (state, payload) => {
+      const session = state.sessions.find(el => el.sessionId = payload.id);
+      session.products.push(payload.product);
+    },
   },
   actions: {
     getSessions: (context) => {
       const sortedData = getSortedData();
-      context.commit('set_sessions', sortedData);
+      context.commit('setSessions', sortedData);
     },
-    // this.cards = this.cards.filter(el => el.text != card.text); for delete prodct from arr
   },
 });

@@ -1,13 +1,14 @@
 <template>
   <div class="wrapper-list">
     <ul class="list">
-      <ListItem @del="$emit('del', session)"
+      <ListItem @del="deleteProduct"
                 :isSave="isSave"
                 v-for="product in products"
                 :key="product.id"
                 :product="product" 
                 @activeLine="activeLine"
                 :line="line"
+                @saveCount="saveCount"
       />
     </ul>
   </div>
@@ -32,6 +33,12 @@ export default {
   methods: {
     activeLine(name) {
       this.line = name;
+    },
+    deleteProduct(product){
+      this.$store.commit('deleteProduct', {product, id: this.session.sessionId});
+    },
+    saveCount(name, count){
+      this.$store.commit('changeProductCount', {id: this.session.sessionId, name, count})
     }
   }
 }

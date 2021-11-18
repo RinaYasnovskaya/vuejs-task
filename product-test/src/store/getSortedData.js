@@ -15,7 +15,7 @@ export const getSortedData = () => {
     } else {
       const item = sortedData.find(session => session.sessionId === event.sessionId);
 
-      if (item != undefined) {
+      if (item) {
         item.exit = event;
       } else {
         const result = {
@@ -29,10 +29,10 @@ export const getSortedData = () => {
   });
 
   sortedData.forEach(session => {
-    const allEventsProducts = events.filter(event => event.sessionId === session.sessionId);
+    const allEventsSession = events.filter(event => event.sessionId === session.sessionId);
     const products = [];
-    // TODO: что-то сделать с 0 и -1
-    allEventsProducts.forEach(product => {
+    
+    allEventsSession.forEach(product => {
       const existProduct = products.find(item => item.name === product.productName);
 
       if (existProduct) {
@@ -42,7 +42,7 @@ export const getSortedData = () => {
       }
     });
 
-    session.products = products;
+    session.products = products.filter(product => product.count != 0);
   });
 
   return sortedData;

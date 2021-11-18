@@ -5,7 +5,7 @@
     </div>
     <div class="list__item-right">
       <my-button :class="['list__delete', classButton]" @click="$emit('del', product)"
-                  ref="button" v-if="!isSave" />
+                  v-if="!isSave" />
       <my-button :class="['list__decrim calc', classButton]" @click="decrement" v-if="!isSave">
         <span>&#8211;</span>
       </my-button>
@@ -35,13 +35,19 @@ export default {
   methods: {
     increment() {
       this.count++;
+      this.saveCount(this.count);
     },
     decrement() {
-      if (this.count != 1) this.count--;
-      else this.$refs.button.click();
+      if (this.count != 1) {
+        this.count--;
+        this.saveCount(this.count);
+      } else this.$emit('del', this.product);
     },
     check() {
       return ((this.product.name === this.line) && !this.isSave);
+    },
+    saveCount() {
+      this.$emit('saveCount', this.product.name, this.count);
     }
   },
   mounted() {
