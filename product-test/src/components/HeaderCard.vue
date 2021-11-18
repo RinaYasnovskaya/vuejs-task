@@ -2,7 +2,7 @@
   <div class="header">
     <div class="header__top">
       <div :class="['icon', classIcon]">
-        <div class="icon__inner" />
+        <div class="icon__inner"></div>
       </div>
       <div class="session-info">
         <span class="session-info__number">{{id}}</span>
