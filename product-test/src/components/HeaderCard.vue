@@ -5,8 +5,10 @@
         <div class="icon__inner" />
       </div>
       <div class="session-info">
-        <span class="session-info__number">234567</span>
-        <span class="session-info__time">14:33:44-14:34:44</span>
+        <span class="session-info__number">{{id}}</span>
+        <span class="session-info__time">
+          {{formatedDate(enter.timestamp)}}-{{formatedDate(exit.timestamp)}}
+        </span>
       </div>
       <div class="card-info">
         <span class="card-info__number">234567</span>
@@ -23,8 +25,8 @@
     <div class="header__bottom">
       <span class="enter">Вход</span>
       <div class="header__bottom-right">
-        <span class="time">14:30:44</span>
-        <my-button class="swap" v-if="!isSave"></my-button>
+        <span class="time">{{formatedDate(enter.timestamp)}}</span>
+        <MyButtonSwap :isSave="isSave" :allSession="allSessionsWithName" :func="swapAll" />
       </div>
     </div>
   </div>
@@ -35,6 +37,10 @@ export default {
   name: 'HeaderCard',
   props: {
     isSave: Boolean,
+    enter: Object,
+    exit: Object,
+    id: String,
+    allSessionsWithName: Array,
   },
   computed: {
     classIcon: function () { 
@@ -42,6 +48,18 @@ export default {
         icon_save: this.isSave
       }
     },
+  },
+  methods: {
+    formatedDate(ms) {
+      const date = new Date(ms);
+      const h = date.getHours();
+      const m = date.getMinutes();
+      const s = date.getSeconds();
+      return `${h >= 10 ? h : '0'+h}:${m >= 10 ? m : '0'+m}:${s >= 10 ? s : '0'+s}`;
+    },
+    swapAll(nextId) {
+      this.$emit('swapAllProducts', nextId);
+    }
   }
 }
 </script>

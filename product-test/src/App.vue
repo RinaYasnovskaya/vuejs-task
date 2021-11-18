@@ -5,6 +5,7 @@
           :session="session"
           @doActive="activeCard"
           :activeItemId="ACTIVE_CARD"
+          :allSessionsWithName="formatedSessionsId(SESSIONS_ID)"
     />
   </div>
 </template>
@@ -17,7 +18,16 @@ export default {
   methods: {
     activeCard(sessionId) {
       this.$store.commit('setActiveCard', sessionId);
-    }
+    },
+    doFormatedName(id) {
+      const partName = id.split('-')[1];
+      return `Гость#${partName}`;
+    },
+    formatedSessionsId(ids) {
+      return ids.map(el => {
+        return { sessionName: this.doFormatedName(el), id: el }
+      })
+    },
   },
   mounted() {
     this.$store.dispatch('getSessions');
@@ -26,6 +36,7 @@ export default {
     ...mapGetters([
       'SESSIONS',
       'ACTIVE_CARD',
+      'SESSIONS_ID'
     ]),
   }
 }

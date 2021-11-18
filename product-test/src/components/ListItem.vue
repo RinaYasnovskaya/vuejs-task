@@ -13,7 +13,7 @@
       <my-button :class="['list__increm calc', classButton]" @click="increment" v-if="!isSave">
         +
       </my-button>
-      <my-button :class="['swap', classButton]" v-if="!isSave" />
+      <MyButtonSwap :isSave="isSave" :allSession="allSession" :func="swapProductCurr" />
     </div>
   </li>
 </template>
@@ -26,10 +26,12 @@ export default {
     callback: Function,
     isSave: Boolean,
     line: String,
+    allSession: Array,
   },
   data () {
     return {
-      count: 1
+      count: 1,
+      isShowMenu: false,
     }
   },
   methods: {
@@ -48,6 +50,12 @@ export default {
     },
     saveCount() {
       this.$emit('saveCount', this.product.name, this.count);
+    },
+    showMenu() {
+      this.isShowMenu = !this.isShowMenu;
+    },
+    swapProductCurr(id) {
+      this.$emit('swapProductSession', id, this.product);
     }
   },
   mounted() {
@@ -59,6 +67,12 @@ export default {
         button_active: this.check(),
       }
     },
+    classHiddenMenu: function() {
+      return {
+        menu_hidden: !this.isShowMenu,
+        menu_active: this.isShowMenu,
+      }
+    }
   }
 }
 </script>
@@ -101,5 +115,28 @@ export default {
     height: 15px;
     background-image: url('../assets/trash.png');
     margin-right: 10px;
+  }
+  .menu_hidden{
+    display: none;
+  }
+  .menu_active{
+    display: block;
+    position: absolute;
+    right: -120px;
+    width: 130px;
+    height: fit-content;
+    max-height: 200px;
+    background: white;
+  }
+  .menu__list{
+    list-style-type: none;
+  }
+  .menu__list-item{
+    padding: 3px 3px;
+  }
+  .menu__list-item:hover{
+    background-color: #f4faff;
+    cursor: pointer;
+    font-weight: bold;
   }
 </style>

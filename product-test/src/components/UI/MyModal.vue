@@ -25,6 +25,7 @@ export default {
   name: 'MyModal',
   props: {
     show: Boolean,
+    sessionId: String,
   },
   data () {
     return {
@@ -52,7 +53,7 @@ export default {
     },
     saveNewProduct() {
       const product = { name: this.selectedPos, count: this.count };
-      this.$emit('addNewProduct', product);
+      this.$store.commit('addProduct', {product, id: this.sessionId});
       this.hideModal();
     }
   },

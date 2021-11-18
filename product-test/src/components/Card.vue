@@ -1,9 +1,20 @@
 <template>
   <div :class="['card', classObject]" @click="$emit('doActive', session.sessionId)">
-    <HeaderCard :isSave="session.save" />
-    <List :session="session" @del="$emit('del', session)" :isSave="session.save" />
+    <HeaderCard 
+      :isSave="session.save"
+      :enter="session.open"
+      :exit="session.exit"
+      :id="nameSession"
+      :allSessionsWithName="allSessionsWithName"
+      @swapAllProducts="swapAllProducts" />
+    <List :session="session" @del="$emit('del', session)" :isSave="session.save" :allSession="allSessionsWithName" />
     <FooterCard @save="saveSession" v-model:show="show" v-if="!session.save" />
-    <MyModal v-model:show="show" v-if="!session.save" @addNewProduct="addNewProduct" />
+    <MyModal
+      v-model:show="show"
+      v-if="!session.save"
+      @addNewProduct="addNewProduct"
+      :sessionId="session.sessionId"
+    />
   </div>
 </template>
 
@@ -13,11 +24,13 @@ export default {
   props: {
     session: Object,
     activeItemId: String,
+    allSessionsWithName: Array,
   },
   data () {
     return {
       isSave: false,
       show: false,
+      nameSession: this.allSessionsWithName.find(el => el.id === this.session.sessionId).sessionName,
     }
   },
   computed: {
@@ -34,6 +47,9 @@ export default {
     },
     addNewProduct(product) {
       this.$store.commit('addProduct', { product, id: this.session.sessionId });
+    },
+    swapAllProducts(nextId){
+      this.$store.commit('swapAll', { currentId: this.session.sessionId, nextId });
     }
   }
 }

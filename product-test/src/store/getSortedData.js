@@ -3,6 +3,7 @@ import trunstileEvents from '@/data/trunstile-events.json';
 
 export const getSortedData = () => {
   const sortedData = [];
+  const allSessionsId = [];
 
   trunstileEvents.forEach(event => {
     if (event.type === "open") {
@@ -12,6 +13,7 @@ export const getSortedData = () => {
         save: false,
       };
       sortedData.push(result);
+      allSessionsId.push(event.sessionId);
     } else {
       const item = sortedData.find(session => session.sessionId === event.sessionId);
 
@@ -24,6 +26,7 @@ export const getSortedData = () => {
           save: false,
         };
         sortedData.push(result);
+        allSessionsId.push(event.sessionId);
       }
     }
   });
@@ -45,5 +48,5 @@ export const getSortedData = () => {
     session.products = products.filter(product => product.count != 0);
   });
 
-  return sortedData;
+  return [sortedData, allSessionsId];
 };

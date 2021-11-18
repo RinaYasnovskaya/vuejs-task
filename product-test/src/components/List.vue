@@ -9,6 +9,8 @@
                 @activeLine="activeLine"
                 :line="line"
                 @saveCount="saveCount"
+                :allSession="allSession"
+                @swapProductSession="swapProductSession"
       />
     </ul>
   </div>
@@ -26,6 +28,7 @@ export default {
   props: {
     session: Object,
     isSave: Boolean,
+    allSession: Array,
   },
   mounted() {
     this.products = this.session.products;
@@ -38,7 +41,10 @@ export default {
       this.$store.commit('deleteProduct', {product, id: this.session.sessionId});
     },
     saveCount(name, count){
-      this.$store.commit('changeProductCount', {id: this.session.sessionId, name, count})
+      this.$store.commit('changeProductCount', {id: this.session.sessionId, product: {name, count}});
+    },
+    swapProductSession(nextId, product){
+      this.$store.commit('swapProduct', {currentId: this.session.sessionId, nextId, product});
     }
   }
 }
