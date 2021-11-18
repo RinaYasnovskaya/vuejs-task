@@ -22,7 +22,7 @@
     </div>
     <div class="header__bottom">
       <span class="enter">Вход</span>
-      <div class="right">
+      <div class="header__bottom-right">
         <span class="time">14:30:44</span>
         <my-button class="swap" v-if="!isSave"></my-button>
       </div>
@@ -65,9 +65,6 @@ export default {
   .enter{
     color: rgb(223 26 26);
     font-weight: bold;
-  }
-  .time{
-    margin-right: 14px;
   }
   .icon{
     width: 45px;
@@ -133,5 +130,9 @@ export default {
   .settings__button-menu{
     font-size: 28px;
     width: 10px;
+  }
+  .header__bottom-right{
+    display: flex;
+    align-items: center;
   }
 </style>

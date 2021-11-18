@@ -25,5 +25,8 @@ export default {
     background-size: contain;
     width: 20px;
     height: 20px;
+    padding: 0;
+    border-radius: 0;
+    margin-left: 18px;
   }
 </style>

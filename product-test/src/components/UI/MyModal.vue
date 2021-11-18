@@ -5,8 +5,8 @@
       <select name="" id="sel" class="modal__select">
         <option v-for="select in selects" :key="select" :value="select">{{ select }}</option>
       </select>
-      <label for="count">Введите количество:</label>
-      <input type="text" name="count" id="count">
+      <label for="count" class="modal__title">Введите количество:</label>
+      <input type="text" class="modal__input" name="count" id="count">
       <my-button class="modal__save">Сохранить</my-button>
     </div>
   </div>
@@ -55,7 +55,7 @@ export default {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    align-items: center;
+    align-items: baseline;
     background-color: white;
     padding: 3%;
     border-radius: inherit;
@@ -66,5 +66,8 @@ export default {
   .modal__save{
     background-color: rgb(0 139 237);
     color: white;
+  }
+  .modal__input{
+    width: 40px;
   }
 </style>

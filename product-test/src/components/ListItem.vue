@@ -87,9 +87,6 @@ export default {
     font-size: 14px;
     color: blue;
   }
-  .list__delete, .list__increm{
-    margin-right: 10px;
-  }
   .list__delete{
     background-repeat: no-repeat;
     background-position: center;
@@ -97,5 +94,6 @@ export default {
     width: 15px;
     height: 15px;
     background-image: url('../assets/trash.png');
+    margin-right: 10px;
   }
 </style>
