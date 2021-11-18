@@ -33,7 +33,7 @@ export default {
 
 <style>
   .card{
-    width: 500px;
+    width: 400px;
     border-radius: 10px;
     border: 2px solid #dde8fb;
     position: relative;

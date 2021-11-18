@@ -22,7 +22,6 @@ export default {
   },
   methods: {
     del(card) {
-      // this.cards = this.cards.filter(el => el.text != card.text);
       //dispatch
       console.log(card);
     },
@@ -48,6 +47,10 @@ export default {
 }
 html{
   font-size: 14px;
+}
+html, body, #app{
+  width: 100%;
+  height: 100%;
 }
 #app {
   font-family: Arial, sans-serif;

@@ -12,22 +12,26 @@
         <span class="card-info__number">234567</span>
         <span class="card-info__title">VV Card id</span>
       </div>
-      <div class="settings">settings</div>
+      <div class="settings">
+        <div class="settings__button" v-if="!isSave">
+          <my-button class="settings__button-edit"></my-button>
+          <my-button class="settings__button-menu">&#10247;</my-button>
+        </div>
+        <span class="settings_save" v-if="isSave"><b>&#10004;</b></span>
+      </div>
     </div>
     <div class="header__bottom">
       <span class="enter">Вход</span>
       <div class="right">
         <span class="time">14:30:44</span>
-        <my-button class="swap">swap</my-button>
+        <my-button class="swap" v-if="!isSave"></my-button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import MyButton from './UI/MyButton.vue'
 export default {
-  components: { MyButton },
   name: 'HeaderCard',
   props: {
     isSave: Boolean,
@@ -51,6 +55,8 @@ export default {
   .header__top{
     padding: 10px 15px;
     background-color: rgba(182, 128, 170, 0.08);
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
   }
   .header__bottom{
     padding: 6px 15px;
@@ -104,5 +110,28 @@ export default {
   .session-info__time, .card-info__title{
     font-size: 12px;
     color: #cbcbcb;
+  }
+  .settings_save{
+    color: green;
+    font-size: 20px;
+    font-weight: bold;
+    display: inline;
+  }
+  .settings__button button{
+    padding: 0;
+    border-radius: 0;
+    filter: opacity(0.3);
+    font-weight: 100;
+  }
+  .settings__button-edit{
+    background: url('../assets/editing.png') no-repeat center;
+    background-size: contain;
+    width: 24px;
+    height: 24px;
+    margin-right: 15px;
+  }
+  .settings__button-menu{
+    font-size: 28px;
+    width: 10px;
   }
 </style>

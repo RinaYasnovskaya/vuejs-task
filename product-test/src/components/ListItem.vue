@@ -1,5 +1,5 @@
 <template>
-  <li :class="['list__item', classLine]" @click="$emit('activeLine', product.name)">
+  <li :class="['list__item', {list__item_active: check()}]" @click="$emit('activeLine', product.name)">
     <div class="list__item-left">
       <span class="list__item-title">{{ product.name }}</span>
     </div>
@@ -13,7 +13,7 @@
       <my-button :class="['list__increm calc', classButton]" @click="increment" v-if="!isSave">
         +
       </my-button>
-      <my-button :class="['list__swap', classButton]" v-if="!isSave">sw</my-button>
+      <my-button :class="['swap', classButton]" v-if="!isSave" />
     </div>
   </li>
 </template>
@@ -33,26 +33,24 @@ export default {
     }
   },
   methods: {
-    increment () {
+    increment() {
       this.count++;
     },
-    decrement () {
+    decrement() {
       if (this.count != 1) this.count--;
       else this.$refs.button.click();
     },
+    check() {
+      return ((this.product.name === this.line) && !this.isSave);
+    }
   },
   mounted() {
     this.count = this.product.count;
   },
   computed: {
-    classLine: function () {
-      return {
-        list__item_active: (this.product.name === this.line) && !this.isSave,
-      }
-    },
     classButton: function () {
       return {
-        button_active: (this.product.name === this.line) && !this.isSave,
+        button_active: this.check(),
       }
     },
   }
