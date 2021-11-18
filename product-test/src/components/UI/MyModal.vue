@@ -2,8 +2,10 @@
   <div class="modal" @click="hideModal" v-if="show">
     <div @click.stop class="modal__content">
       <span class="modal__title">Выберите из списка: </span>
-      <select name="" id="sel" class="modal__select" @change="inputSelected" v-model="selectedPos">
-        <option v-for="select in selects" :key="select" :value="select">{{ select }}</option>
+      <select id="sel" class="modal__select" @change="inputSelected" v-model="selectedPos">
+        <option v-for="select in selects" :key="select" :value="select">
+          {{ select }}
+        </option>
       </select>
       <label for="count" class="modal__title">Введите количество:</label>
       <input 
@@ -52,7 +54,7 @@ export default {
       this.selectedPos = event.target.value;
     },
     saveNewProduct() {
-      const product = { name: this.selectedPos, count: this.count };
+      const product = {name: this.selectedPos, count: this.count};
       this.$store.commit('addProduct', {product, id: this.sessionId});
       this.hideModal();
     }
@@ -81,7 +83,7 @@ export default {
     flex-direction: column;
     gap: 10px;
     align-items: baseline;
-    background-color: white;
+    background-color: rgb(250, 250, 250);
     padding: 3%;
     border-radius: inherit;
   }
@@ -90,7 +92,7 @@ export default {
   }
   .modal__save{
     background-color: rgb(0 139 237);
-    color: white;
+    color: rgb(250, 250, 250);
   }
   .modal__input{
     width: 40px;

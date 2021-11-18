@@ -65,7 +65,7 @@ export default {
     width: 130px;
     height: fit-content;
     max-height: 200px;
-    background: white;
+    background: rgb(255, 250, 250);
   }
   .menu__list{
     list-style-type: none;

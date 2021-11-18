@@ -46,16 +46,20 @@ export default createStore({
       const nextSession = state.sessions.find(session => session.sessionId === payload.nextId);
       const indInCurrentSession = currentSession.products.findIndex(product => product.name === payload.product.name);
 
-      currentSession.products.splice(indInCurrentSession, 1);
-      nextSession.products.push(payload.product);
+      if (!nextSession.save) {
+        currentSession.products.splice(indInCurrentSession, 1);
+        nextSession.products.push(payload.product);
+      }
     },
 
     swapAll: (state, payload) => {
       const currentSession = state.sessions.find(session => session.sessionId === payload.currentId);
       const nextSession = state.sessions.find(session => session.sessionId === payload.nextId);
 
-      nextSession.products.push(...currentSession.products);
-      currentSession.products.length = 0;
+      if (!nextSession.save) {
+        nextSession.products.push(...currentSession.products);
+        currentSession.products.length = 0;
+      }
     }
   },
 

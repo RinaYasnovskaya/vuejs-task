@@ -101,13 +101,13 @@ export default {
     background-repeat: no-repeat;
     background-size: 20px;
     padding: 4px;
-    border: 2px solid black;
+    border: 2px solid rgb(0, 0, 0);
     border-radius: 8px;
     background-position: center;
     filter: invert(1);
   }
   .icon_save{
-    background: blue;
+    background: rgb(48, 48, 255);
   }
   .header__top span{
     display: block;
@@ -127,7 +127,7 @@ export default {
     color: #cbcbcb;
   }
   .settings_save{
-    color: green;
+    color: rgb(45, 209, 45);
     font-size: 20px;
     font-weight: bold;
     display: inline;
